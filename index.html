@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aplicaciones Ofimáticas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3ee;--card:#fbfdfb;--ink:#16241e;--mut:#566a60;--line:#cfdbd2;--code:#e3ebe4;--hero:#12352a;--c1:#1f6b4a;--c2:#0f7a86;--c3:#8a4b2a;--c4:#b3382a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a16;--card:#16241e;--ink:#e6efe9;--mut:#9db3a7;--line:#26392f;--code:#1e2f27;--hero:#0a2119;--c1:#6fd0a0;--c2:#5cc7d3;--c3:#e0a27a;--c4:#f08a7c}}
+:root[data-theme="dark"]{--bg:#0f1a16;--card:#16241e;--ink:#e6efe9;--mut:#9db3a7;--line:#26392f;--code:#1e2f27;--hero:#0a2119;--c1:#6fd0a0;--c2:#5cc7d3;--c3:#e0a27a;--c4:#f08a7c}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 16px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+:focus-visible{outline:3px solid var(--c2);outline-offset:2px}
+.hero{background:var(--hero);color:#eaf3ee;position:relative;overflow:hidden;margin-top:calc(-1*env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
+.hero div{max-width:1040px;margin:0 auto;padding:44px 20px 120px;position:relative;z-index:1}
+.hero svg{position:absolute;left:0;bottom:0;width:100%;height:110px}
+h1{font-size:clamp(32px,5.5vw,52px);line-height:1.08;margin:0 0 12px}
+.hero p{max-width:62ch;margin:0 0 8px;color:#c9dcd1}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 20px 60px;display:grid;grid-template-columns:210px 1fr;gap:36px}
+nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);align-self:start}
+nav a{display:block;text-decoration:none;color:inherit;padding:9px 12px;border-left:4px solid var(--m);margin-bottom:8px;border-radius:0 8px 8px 0;font-size:15px;line-height:1.35}
+nav a:hover{background:var(--card)}
+nav small{display:block;color:var(--mut)}
+.prog{font-size:14px;color:var(--mut);margin:14px 0 0}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;width:0;background:var(--c1);transition:width .3s}
+.mod{margin-bottom:52px}
+.mod h2{font-size:27px;margin:0 0 4px;color:var(--m)}
+.mod h3{font-size:19px;margin:26px 0 8px}
+.mod>p{margin:0 0 10px;color:var(--mut)}
+.links{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.links a{display:inline-block;border:1px solid var(--m);color:var(--m);border-radius:20px;padding:3px 14px;font-size:15px;text-decoration:none}
+.links a:hover{background:var(--m);color:var(--card)}
+.lab,.quiz{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--m);border-radius:10px;padding:16px 18px}
+.lab p{margin:0 0 10px;color:var(--mut);font-size:15px}
+button{font:inherit;font-size:15px;background:var(--m);color:var(--card);border:0;border-radius:8px;padding:6px 14px;cursor:pointer;margin:0 6px 6px 0}
+input,textarea{font:inherit;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 8px}
+.doc{min-height:110px;border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--bg)}
+.sh{border-collapse:collapse;max-width:100%;display:block;overflow-x:auto}
+.sh td{padding:0;border:1px solid var(--line)}
+.sh input{width:104px;border:0;border-radius:0;background:var(--card);text-align:left}
+.sh th{background:var(--code);font-size:13px;padding:2px 6px;border:1px solid var(--line)}
+.sl{aspect-ratio:16/9;max-width:460px;background:var(--code);border:1px solid var(--line);border-radius:8px;padding:5%;overflow:hidden}
+.sl b{display:block;margin-bottom:6px}
+.chart{display:flex;gap:10px;align-items:flex-end;height:110px;margin:8px 0}
+.chart i{flex:1;background:var(--m);border-radius:4px 4px 0 0;min-width:24px;transition:height .3s}
+details{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--m);border-radius:10px;margin-bottom:10px}
+summary{cursor:pointer;padding:13px 16px;font-weight:700;list-style:none;display:flex;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"+";color:var(--m);width:14px}
+details[open]>summary:before{content:"−"}
+.body{padding:0 18px 16px}
+.body h4{margin:14px 0 4px;font-size:16px}
+.body p{margin:0 0 6px}
+pre{background:var(--code);border-radius:8px;padding:12px 14px;overflow-x:auto;margin:6px 0;font:14px/1.5 ui-monospace,Consolas,Menlo,monospace}
+ol{margin:4px 0 0;padding-left:22px}
+.sol{margin-top:12px;border:1px dashed var(--m);border-radius:8px}
+.sol summary{padding:8px 12px}
+.sol p{padding:0 12px 10px}
+.done{display:flex;gap:8px;align-items:center;margin-top:14px;font-size:15px}
+.done input{width:20px;height:20px;accent-color:var(--m)}
+.qv{overflow:hidden}
+.track{display:flex;transition:transform .3s}
+.q{flex:0 0 100%;min-width:0;border:0;padding:0 2px;margin:0}
+.q legend{font-weight:700;padding:0;margin-bottom:6px}
+.q label{display:block;padding:6px 0}
+.qn{margin:0 0 8px;color:var(--mut);font-size:15px}
+.ctl{margin-top:12px}
+.res p{margin:4px 0}
+button:disabled{opacity:.4;cursor:default}
+.ev .quiz{background:none;border:0;padding:0 18px 16px}
+@media (prefers-reduced-motion:reduce){.track{transition:none}}
+.ok{color:var(--c1)}.no{color:var(--c4)}
+@media (max-width:860px){.wrap{grid-template-columns:1fr;gap:12px}nav{position:static;display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;flex-wrap:wrap}nav a{flex:0 0 auto;border:1px solid var(--line);border-left:4px solid var(--m);margin:0}}
+</style>
+</head>
+<body>
+<div class="hero"><div>
+<h1>Aplicaciones Ofimáticas</h1>
+<p>Cuatro módulos progresivos con guía de estudio, ejemplos que puedes editar y ejecutar en vivo, ejercicios prácticos con solución y una evaluación final por módulo.</p>
+<p>Una ayuda adicional para practicar a tu ritmo, antes o después de tus clases.</p></div>
+<svg viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0 110V60L120 30 240 62 380 15 520 58 650 25 800 65 940 20 1080 55 1200 35V110Z" fill="#1f6b4a" opacity=".55"/><path d="M0 110V85L150 55 300 88 470 50 640 90 820 58 1000 92 1200 62V110Z" fill="#0f7a86" opacity=".6"/><path d="M0 110V100L200 80 420 102 700 78 950 104 1200 84V110Z" fill="#8a4b2a"/></svg></div>
+<div class="wrap">
+<nav id="nav" aria-label="Módulos"></nav>
+<main id="main"></main>
+</div>
+<script>
+var M=[
+{n:"Módulo I: Procesador de texto",s:"Semanas 1-5",c:"--c1",lab:"doc",
+g:"Aprenderás a redactar documentos formales: estilos, tablas, citas APA, índice automático y revisión con comentarios. La clave es usar estilos en lugar de dar formato a mano.",
+L:[["Ayuda de Word","https://support.microsoft.com/es-es/word/"],["Video: Curso de Word básico completo","https://www.youtube.com/watch?v=T1kcjZKC784"],["Video: índice automático con formato APA 7","https://www.youtube.com/watch?v=6R21dXKoxfc"]],
+w:[
+{t:"Inducción y primer documento",o:"Configurar el entorno y redactar un documento sencillo.",e:"Estructura de la carta de presentación:\n\nTítulo: Carta de presentación\nSaludo: Estimado grupo:\nPárrafo 1: quién soy\nPárrafo 2: qué espero del curso\nCierre y firma",p:["Crea una carpeta en Drive con tu nombre.","Abre un Documento nuevo dentro de la carpeta.","Redacta la carta de una página con tres párrafos.","Compártela con la persona docente como Editor."],v:"Carta de presentación de una página",s:"Carpeta Ofimatica-Apellido, documento titulado «Carta de presentación», tres párrafos, permiso de Editor para la persona docente."},
+{t:"Formato de texto y párrafo",o:"Aplicar fuentes, alineación, interlineado, listas y márgenes.",e:"Especificación de formato:\n\nTítulos: estilo Título 1, Arial 16 negrita\nTexto: Texto normal, 12 pt, interlineado 1,5\nAlineación: justificada\nMárgenes: 2,5 cm",p:["Copia un texto plano de una página.","Aplica Título 1 y Título 2 a los encabezados.","Ajusta interlineado, alineación y márgenes.","Convierte una enumeración en lista con viñetas."],v:"Documento con formato completo",s:"Formato > Interlineado > 1,5; Archivo > Configuración de página > márgenes 2,5 cm; Formato > Alineación > Justificar."},
+{t:"Tablas, imágenes y encabezados",o:"Maquetar un documento con tabla, imagen y encabezado.",e:"Tabla de CV (2 columnas):\n\nFila 1 (celdas combinadas): Nombre y contacto\nFila 2: Formación | Título, institución, año\nFila 3: Experiencia | Puesto, lugar, fechas\n\nEncabezado: Nombre Apellido · CV",p:["Inserta una tabla de 2 columnas y 5 filas.","Combina celdas para el nombre y sombrea el encabezado.","Inserta una imagen y ajústala a la columna.","Agrega un encabezado con tu nombre."],v:"Currículum vitae con tabla",s:"Insertar > Tabla; selecciona las celdas, clic derecho > Combinar celdas; Insertar > Encabezados y pies de página."},
+{t:"Citas APA, notas al pie e índice",o:"Citar en formato APA 7 y generar un índice automático.",e:"Cita en el texto: (Pérez, 2023)\nReferencia:\nPérez, A. (2023). Título del libro. Editorial.\n\nÍndice: Insertar > Tabla de contenido\n(requiere Título 1 y Título 2)",p:["Toma un informe de 3 páginas.","Marca cada encabezado con Título 1 o Título 2.","Inserta 2 notas al pie y 3 citas APA.","Agrega las referencias y genera la tabla de contenido."],v:"Informe con índice y referencias",s:"Si el índice sale vacío, falta aplicar estilos de título. Actualízalo con el botón de recarga del índice."},
+{t:"Revisión y control de cambios",o:"Revisar un documento ajeno con Sugerencias y comentarios.",e:"En Docs, control de cambios = modo Sugerencias.\n\nEditando > Sugerencias\nComentario: clic derecho > Comentario\nAceptar o rechazar con ✓ o ✕",p:["Abre un documento con errores.","Cambia el modo a Sugerencias.","Corrige 8 errores y deja 3 comentarios.","Comparte el resultado con la persona autora."],v:"Documento revisado",s:"Las sugerencias aparecen como cambios propuestos; quien es autor las acepta o rechaza una por una."}],
+q:[["¿En qué pestaña de Word está el comando Tabla de contenido?",["Insertar","Referencias","Vista","Diseño"],1],["¿Qué herramienta de Word permite aceptar o rechazar los cambios de otra persona?",["Control de cambios (pestaña Revisar)","Buscar y reemplazar","Ortografía","Columnas"],0],["¿Cómo se insertan citas y bibliografía en formato APA en Word?",["Referencias > Insertar cita","Diseño > Bordes","Insertar > Formas","Vista > Zoom"],0],["Para que un título aparezca en la tabla de contenido automática debe tener…",["Negrita","Estilo Título 1 o Título 2","Subrayado","Color rojo"],1]]},
+{n:"Módulo II: Hoja de cálculo",s:"Semanas 6-11",c:"--c2",lab:"sh",
+g:"Trabajarás con datos: formato, fórmulas, referencias absolutas, funciones, gráficos y filtros. Escribe fórmulas que se copien bien: fija con $ lo que no debe moverse.",
+L:[["Ayuda de Excel","https://support.microsoft.com/es-es/excel"],["Video: Excel para principiantes (fórmulas y BUSCARV)","https://www.youtube.com/watch?v=stRd64hplfQ"],["Video: cómo usar la función SI","https://www.youtube.com/watch?v=QvyIaAhnKIk"]],
+w:[
+{t:"Interfaz, celdas y formato",o:"Digitar datos y darles formato de moneda, fecha y bordes.",e:"Columnas del catálogo:\n\nA: Código | B: Producto | C: Precio (moneda ₡) | D: Fecha\n\nFormato > Número > Moneda\nVer > Inmovilizar > 1 fila",p:["Digita 15 productos con código, nombre y precio.","Da formato de moneda a los precios y de fecha a D.","Agrega bordes y color al encabezado.","Inmoviliza la primera fila."],v:"Catálogo de productos",s:"Selecciona la columna C > Formato > Número > Moneda. Ver > Inmovilizar > 1 fila mantiene visible el encabezado."},
+{t:"Fórmulas y referencias absolutas",o:"Usar operaciones básicas y fijar celdas con $.",e:"Subtotal:  =B2*C2\nTotal:     =SUMA(D2:D10)\nIVA:       =D11*$F$1   (F1 contiene 13%)\nTotal a pagar: =D11+D12",p:["Crea columnas Producto, Cantidad, Precio y Subtotal.","Escribe el subtotal y cópialo hacia abajo.","Guarda el IVA en F1 y úsalo con $F$1.","Calcula el total a pagar."],v:"Factura automatizada",s:"D2 =B2*C2 (copiar hacia abajo); D11 =SUMA(D2:D10); D12 =D11*$F$1; D13 =D11+D12."},
+{t:"Funciones esenciales y condicionales",o:"Resumir datos con funciones estadísticas y condicionales.",e:"=PROMEDIO(B2:D2)\n=MAX(E2:E21)   =MIN(E2:E21)\n=CONTAR(E2:E21)\n=SUMAR.SI(A2:A21;\"Lácteos\";D2:D21)\n=CONTAR.SI(F2:F21;\"Presente\")",p:["Crea un registro de 10 estudiantes con 3 notas.","Calcula el promedio de cada uno.","Obtén la nota máxima, la mínima y la cantidad de registros.","Cuenta las asistencias con CONTAR.SI."],v:"Registro de notas y asistencia",s:"E2 =PROMEDIO(B2:D2); nota máxima =MAX(E2:E11); asistencias =CONTAR.SI(F2:F11;\"Presente\")."},
+{t:"SI, formato condicional y validación",o:"Automatizar decisiones y alertas visuales.",e:"=SI(E2>=70;\"Aprobado\";\"Reprobado\")\n\nFormato > Formato condicional > Menor que 70 > relleno rojo\nDatos > Validación de datos > Lista de elementos",p:["Agrega la columna Estado con la función SI.","Resalta con formato condicional las notas menores a 70.","Crea una lista desplegable para la columna Sede.","Agrega una alerta de stock bajo."],v:"Reporte de ventas con alertas",s:"F2 =SI(E2>=70;\"Aprobado\";\"Reprobado\"); formato condicional: Menor que 70, relleno rojo."},
+{t:"Gráficos",o:"Elegir y personalizar el gráfico adecuado.",e:"Comparar categorías: columnas\nTendencia en el tiempo: líneas\nPartes de un total: circular (máx. 5 categorías)\n\nSiempre: título claro y ejes rotulados.",p:["Organiza ingresos y gastos por mes.","Inserta un gráfico de columnas y otro de líneas.","Añade título, rótulos y colores consistentes.","Escribe una conclusión de dos líneas."],v:"Informe gráfico de ingresos y gastos",s:"Selecciona A1:C13 > Insertar > Gráfico. Líneas para la evolución mensual; columnas para comparar ingresos contra gastos."},
+{t:"Ordenar, filtrar, BUSCARV e impresión",o:"Limpiar y consultar una base de 50 registros.",e:"Ordenar: Datos > Ordenar hoja\nFiltro: Datos > Crear un filtro\nBúsqueda: =BUSCARV(A2;Catalogo!A:C;3;FALSO)\nImpresión: Archivo > Imprimir > Ajustar al ancho",p:["Digita o importa 50 registros.","Ordena por fecha y filtra por una categoría.","Trae un precio de otra hoja con BUSCARV.","Configura la impresión y exporta a PDF."],v:"Base de datos filtrada",s:"BUSCARV(valor; rango; columna; FALSO): el 3 es la columna del rango de la que se devuelve el dato."}],
+q:[["En Excel, ¿qué tecla alterna la referencia absoluta ($) al escribir una fórmula?",["F2","F4","F5","F9"],1],["¿Qué fórmula de Excel devuelve «Aprobado» si A1 es mayor o igual que 70?",["=SI(A1>=70;\"Aprobado\";\"Reprobado\")","=SUMA(A1;70)","=CONTAR.SI(A1;70)","=MAX(A1;70)"],0],["¿Qué función de Excel busca un valor en la primera columna y devuelve otro dato de esa fila?",["BUSCARV","PROMEDIO","MAX","CONTAR"],0],["¿En qué pestaña de Excel se inserta un gráfico de columnas?",["Insertar","Datos","Revisar","Vista"],0]]},
+{n:"Módulo III: Presentaciones",s:"Semanas 12-14",c:"--c3",lab:"sl",
+g:"Diseñarás presentaciones claras: una idea por diapositiva, poco texto, letra legible y una exposición ensayada. Presentar bien también es parte del producto.",
+L:[["Ayuda de PowerPoint","https://support.microsoft.com/es-es/powerpoint"],["Video: cómo usar PowerPoint, guía completa","https://www.youtube.com/watch?v=LIXfGkAca0g"],["Video: transiciones y animaciones","https://www.youtube.com/watch?v=6783-cvOum0"]],
+w:[
+{t:"Estructura y diseño de diapositivas",o:"Organizar una presentación con una idea por diapositiva.",e:"Guion de 6 diapositivas:\n\n1 Portada\n2 Problema\n3 a 5 Un punto por diapositiva\n6 Cierre y contacto\n\nLetra mínima de 24 pt.",p:["Elige un tema.","Escribe el guion de 6 diapositivas.","Aplica una plantilla con una idea por diapositiva.","Revisa contraste y tamaño de letra."],v:"Borrador de presentación",s:"Cada diapositiva tiene un título corto y máximo 30 a 40 palabras; usa imagen o cifra grande en lugar de párrafos."},
+{t:"Multimedia e interactividad",o:"Incorporar video, hipervínculos y transiciones sutiles.",e:"Video: Insertar > Video (fija inicio y fin)\nÍndice: texto > Insertar vínculo > esta presentación > diapositiva\nTransición: Diapositiva > Transición > Desvanecer",p:["Inserta un video corto.","Crea un índice con vínculos a cada sección.","Añade un botón de regreso al índice.","Aplica una sola transición sutil."],v:"Presentación interactiva",s:"Los vínculos internos se crean con Insertar vínculo > Diapositivas de esta presentación. Usa una misma transición en todas."},
+{t:"Ensayo y comunicación oral",o:"Presentar con seguridad por Meet.",e:"Estructura de 5 minutos:\n30 s apertura · 3 min desarrollo · 1 min ejemplo · 30 s cierre\n\nEn Meet: Presentar ahora > Una pestaña",p:["Escribe notas del orador.","Ensaya con cronómetro hasta 5 minutos.","Practica compartir solo la pestaña de la presentación.","Ajusta según la retroalimentación."],v:"Presentación ensayada",s:"Compartir una pestaña evita mostrar notificaciones y permite ver el audio o video de la presentación."}],
+q:[["¿Qué pestaña de PowerPoint contiene los efectos de paso entre diapositivas?",["Transiciones","Animaciones","Insertar","Revisar"],0],["¿Qué pestaña se usa para animar un objeto dentro de una diapositiva?",["Animaciones","Diseño","Vista","Archivo"],0],["¿Qué tecla inicia la presentación desde la primera diapositiva?",["F5","F1","F12","Ctrl+P"],0],["Una buena práctica en PowerPoint es…",["Una idea por diapositiva y letra legible","Párrafos completos en cada diapositiva","Cinco tipos de letra distintos","Animar todos los elementos"],0]]},
+{n:"Módulo IV: Integración y proyecto",s:"Semanas 15-16",c:"--c4",lab:"ch",
+g:"Unirás las tres herramientas: un informe en Docs con datos y gráficos vinculados desde Sheets y una presentación final. Lo esencial es no duplicar trabajo y cuidar los permisos.",
+L:[["Ayuda de Excel","https://support.microsoft.com/es-es/excel"],["Ayuda de Microsoft: importar un gráfico de Excel","https://support.microsoft.com/es-es/office/v%C3%ADdeo-importar-un-gr%C3%A1fico-f03bf006-3d66-4fad-8adc-9e7919161b05"],["Video: vincular gráficas de Excel a PowerPoint y Word","https://www.youtube.com/watch?v=Mr3w2zTMTCs"]],
+w:[
+{t:"Vinculación entre aplicaciones",o:"Usar gráficos de Sheets dentro de Docs sin duplicar trabajo.",e:"En Sheets: clic en el gráfico > Copiar\nEn Docs: Pegar > Vincular a la hoja de cálculo\nSi cambian los datos, pulsa Actualizar.\n\nEl vínculo no se actualiza solo. Comparte los archivos con los mismos permisos.",p:["Crea un informe en Docs con introducción y conclusiones.","Vincula dos gráficos desde tu hoja de datos.","Cambia un dato en Sheets y actualiza el gráfico en Docs.","Comparte el informe y la hoja con la persona docente."],v:"Informe con gráficos vinculados",s:"Al pegar, elige «Vincular a la hoja de cálculo». Tras cambiar datos, aparece el botón Actualizar sobre el gráfico."},
+{t:"Proyecto integrador y Demo Day",o:"Preparar y exponer el paquete completo.",e:"Paquete: Informe (Doc) + Hoja de datos con gráficos y filtros (Sheet) + Presentación (Slide)\n\nExposición individual de 5 minutos por Meet.",p:["Revisa el paquete con tu lista de cotejo.","Verifica permisos y nombres de archivo.","Entrega los tres archivos.","Practica tu exposición de 5 minutos."],v:"Paquete ofimático completo",s:"Nombres claros (Apellido_Informe, Apellido_Datos, Apellido_Presentacion) y permisos de lectura para quien revisa."}],
+q:[["Para vincular un gráfico de Excel a Word o PowerPoint y que se actualice, se pega con…",["Mantener formato de origen y vincular datos","Pegar como imagen","Pegar solo texto","Una captura de pantalla"],0],["Si cambian los datos en Excel, en Word o PowerPoint se usa…",["Diseño > Actualizar datos","Volver a escribir el gráfico","Borrar el gráfico","Cerrar el programa"],0],["El paquete final incluye…",["Word + Excel + PowerPoint","Solo Word","Solo un PDF","Un video"],0],["Antes de entregar archivos vinculados conviene…",["Guardarlos en la misma carpeta y comprobar los vínculos","Mover el libro de Excel a otra carpeta","Cambiar el nombre del libro de Excel","Borrar el libro de Excel original"],0]]}
+];
+var st={};try{st=JSON.parse(localStorage.getItem("ofi")||"{}")}catch(e){}
+function save(){try{localStorage.setItem("ofi",JSON.stringify(st))}catch(e){}}
+var LAB={
+doc:'<p>Edita el texto y prueba el formato. Selecciona una frase y pulsa un botón.</p><div id="tb"><button data-c="bold">Negrita</button><button data-c="formatBlock" data-a="H2">Título</button><button data-c="insertUnorderedList">Lista</button><button data-c="justifyFull">Justificar</button><button id="lh">Interlineado 1,5</button></div><div class="doc" id="ed" contenteditable="true"><p>Estimado grupo: me presento y cuento qué espero de este curso.</p></div><p id="wc"></p>',
+sh:'<p>Cambia cualquier celda. Prueba escribir en F1 <code>=SUMA(B2:C5)</code> o cambiar una nota para ver el estado.</p><div id="grid"></div>',
+sl:'<p>Ajusta el texto y el tamaño de letra. La diapositiva te dice si está equilibrada.</p><input id="st" value="Tres ideas para ahorrar" aria-label="Título"> <input id="sz" type="range" min="14" max="40" value="28" aria-label="Tamaño"><br><textarea id="sb" rows="3" cols="40" aria-label="Texto">Compara precios. Planifica compras. Evita gastos hormiga.</textarea><div class="sl" id="sp"></div><p id="sf"></p>',
+ch:'<p>Cambia los datos de la hoja y observa el informe: no se actualiza hasta que pulses Actualizar.</p><div>Hoja: <input id="d1" type="number" value="40" style="width:70px"> <input id="d2" type="number" value="65" style="width:70px"> <input id="d3" type="number" value="50" style="width:70px"></div><div class="chart" id="cg"></div><button id="up">Actualizar</button><span id="cs"></span>'};
+var wk=0,nav="",out="";
+M.forEach(function(m,i){
+ nav+='<a href="#m'+i+'" style="--m:var('+m.c+')">'+m.n+'<small>'+m.s+'</small></a>';
+ out+='<section class="mod" id="m'+i+'" style="--m:var('+m.c+')"><h2>'+m.n+'</h2><p>'+m.g+'</p><h3>Material y enlaces</h3><ul class="links">'+m.L.map(function(l){return '<li><a href="'+l[1]+'" target="_blank" rel="noopener">'+l[0]+'</a></li>'}).join("")+'</ul><h3>Laboratorio en vivo</h3><div class="lab">'+LAB[m.lab]+'</div><h3>Guía de estudio y ejercicios</h3>';
+ m.w.forEach(function(w){wk++;
+  out+='<details><summary>Semana '+wk+': '+w.t+'</summary><div class="body"><h4>Objetivo</h4><p>'+w.o+'</p><h4>Ejemplo</h4><pre>'+w.e.replace(/</g,"&lt;")+'</pre><h4>Práctica</h4><ol>'+w.p.map(function(s){return "<li>"+s+"</li>"}).join("")+'</ol><p><b>Producto:</b> '+w.v+'</p><details class="sol"><summary>Ver solución</summary><p>'+w.s+'</p></details><label class="done"><input type="checkbox" data-w="'+wk+'"'+(st[wk]?" checked":"")+'> Marqué esta práctica como hecha</label></div></details>';
+ });
+ out+='<details class="ev"><summary>Evaluación final del módulo ('+m.q.length+' preguntas)</summary><div class="quiz" data-m="'+i+'"><p class="qn" aria-live="polite"></p><div class="qv"><div class="track">'+m.q.map(function(q,k){return '<fieldset class="q"><legend>'+(k+1)+'. '+q[0]+'</legend>'+q[1].map(function(o,j){return '<label><input type="radio" name="q'+i+'_'+k+'" value="'+j+'"> '+o+'</label>'}).join("")+'</fieldset>'}).join("")+'</div></div><div class="res"></div><div class="ctl"><button class="pv">Anterior</button><button class="nx">Siguiente</button></div></div></details></section>';
+});
+var nv=document.getElementById("nav");nv.innerHTML=nav+'<div class="prog"><span id="pt"></span><div class="bar"><i id="pb"></i></div></div>';
+document.getElementById("main").innerHTML=out;
+function prog(){var n=Object.keys(st).filter(function(k){return st[k]}).length;document.getElementById("pt").textContent="Avance: "+n+" de 16 prácticas";document.getElementById("pb").style.width=(n/16*100)+"%"}
+document.getElementById("main").addEventListener("change",function(e){if(e.target.dataset.w){st[e.target.dataset.w]=e.target.checked;save();prog()}});
+prog();
+document.querySelectorAll(".quiz").forEach(function(b){
+ var m=M[b.dataset.m],n=m.q.length,i=0,tr=b.querySelector(".track"),qs=b.querySelectorAll(".q"),pv=b.querySelector(".pv"),nx=b.querySelector(".nx"),rs=b.querySelector(".res"),ql=b.querySelector(".qv"),ctl=b.querySelector(".ctl"),qn=b.querySelector(".qn");
+ function go(k){i=k;tr.style.transform="translateX(-"+(k*100)+"%)";qs.forEach(function(q,j){if(j===k)q.removeAttribute("inert");else q.setAttribute("inert","")});qn.textContent="Pregunta "+(k+1)+" de "+n;pv.disabled=k===0;nx.textContent=k===n-1?"Ver resultado":"Siguiente"}
+ pv.onclick=function(){go(i-1)};
+ nx.onclick=function(){if(i<n-1){go(i+1);return}
+  var s=0,h="";m.q.forEach(function(q,k){var r=b.querySelector('input[name="q'+b.dataset.m+'_'+k+'"]:checked'),ok=r&&+r.value===q[2];if(ok)s++;h+='<p class="'+(ok?"ok":"no")+'">'+(k+1)+'. '+(ok?"Correcto":"Respuesta correcta: "+q[1][q[2]])+'</p>'});
+  rs.innerHTML='<strong>Resultado: '+s+' de '+n+'</strong>'+h+'<button class="rt">Intentar de nuevo</button>';
+  ql.hidden=ctl.hidden=qn.hidden=true;rs.hidden=false;
+  rs.querySelector(".rt").onclick=function(){b.querySelectorAll("input:checked").forEach(function(x){x.checked=false});rs.hidden=true;ql.hidden=ctl.hidden=qn.hidden=false;go(0)}};
+ rs.hidden=true;go(0)});
+/* Lab I */
+var ed=document.getElementById("ed");
+document.getElementById("tb").addEventListener("mousedown",function(e){var t=e.target;if(t.dataset.c){e.preventDefault();document.execCommand(t.dataset.c,false,t.dataset.a||null)}});
+document.getElementById("lh").onclick=function(){ed.style.lineHeight=ed.style.lineHeight?"":"1.5"};
+function wc(){document.getElementById("wc").textContent=(ed.innerText.trim().split(/\s+/).filter(Boolean).length)+" palabras"}
+ed.addEventListener("input",wc);wc();
+/* Lab II: mini hoja */
+var D={A1:"Estudiante",B1:"Nota 1",C1:"Nota 2",D1:"Promedio",E1:"Estado",F1:"",A2:"Ana",B2:"80",C2:"70",A3:"Luis",B3:"65",C3:"60",A4:"Marta",B4:"90",C4:"95",A5:"Pedro",B5:"55",C5:"75"};
+for(var r=2;r<=5;r++){D["D"+r]="=PROMEDIO(B"+r+":C"+r+")";D["E"+r]='=SI(D'+r+'>=70;"Aprobado";"Reprobado")'}
+var COLS="ABCDEF",inp={};
+function num(v){return v!==""&&!isNaN(v)?+v:v}
+function flat(a){var o=[];a.forEach(function(x){Array.isArray(x)?o=o.concat(x):o.push(x)});return o}
+var F={SUMA:function(){return flat([].slice.call(arguments)).reduce(function(a,b){return a+(typeof b==="number"?b:0)},0)},
+PROMEDIO:function(){var n=flat([].slice.call(arguments)).filter(function(x){return typeof x==="number"});return n.length?n.reduce(function(a,b){return a+b},0)/n.length:"#DIV/0"},
+MAX:function(){return Math.max.apply(null,flat([].slice.call(arguments)).filter(function(x){return typeof x==="number"}))},
+MIN:function(){return Math.min.apply(null,flat([].slice.call(arguments)).filter(function(x){return typeof x==="number"}))},
+CONTAR:function(){return flat([].slice.call(arguments)).filter(function(x){return typeof x==="number"}).length},
+SI:function(c,a,b){return c?a:b}};
+function R(a,b,d){var o=[];for(var c=COLS.indexOf(a[0]);c<=COLS.indexOf(b[0]);c++)for(var r=+a.slice(1);r<=+b.slice(1);r++)o.push(calc(COLS[c]+r,d));return o}
+function calc(ref,d){d=d||0;var raw=D[ref];if(raw===undefined||raw==="")return"";if(raw[0]!=="=")return num(raw);
+ if(d>20)return"#CICLO";
+ try{var js=raw.slice(1).replace(/([A-F]\d+):([A-F]\d+)|([A-F]\d+)/g,function(m,a,b,c){return a?'R("'+a+'","'+b+'",'+(d+1)+')':'C("'+c+'",'+(d+1)+')'}).replace(/\b(SUMA|PROMEDIO|MAX|MIN|CONTAR|SI)\(/g,"F.$1(").replace(/;/g,",").replace(/<>/g,"!=").replace(/([^<>=!])=(?!=)/g,"$1==");
+  var t=js.replace(/"[^"]*"/g,'""');if(/[^\w\s.,+\-*\/()<>=!"%]/.test(t)||(t.match(/[A-Za-z_]+/g)||[]).some(function(w){return["C","R","F","SUMA","PROMEDIO","MAX","MIN","CONTAR","SI"].indexOf(w)<0}))return"#ERROR";
+  var v=new Function("C","R","F","return "+js)(calc,R,F);return typeof v==="number"&&isFinite(v)?Math.round(v*100)/100:(v===undefined?"#ERROR":v)}catch(e){return"#ERROR"}}
+function show(){for(var k in inp)if(document.activeElement!==inp[k])inp[k].value=calc(k)}
+var g='<table class="sh"><tr><th></th>'+COLS.split("").map(function(c){return"<th>"+c+"</th>"}).join("")+"</tr>";
+for(r=1;r<=5;r++){g+="<tr><th>"+r+"</th>"+COLS.split("").map(function(c){return'<td><input data-r="'+c+r+'" aria-label="Celda '+c+r+'"></td>'}).join("")+"</tr>"}
+document.getElementById("grid").innerHTML=g+"</table>";
+document.querySelectorAll("#grid input").forEach(function(i){var k=i.dataset.r;inp[k]=i;
+ i.onfocus=function(){i.value=D[k]||""};i.oninput=function(){D[k]=i.value;show()};i.onblur=show});
+show();
+/* Lab III */
+function sl(){var s=document.getElementById("sz").value,t=document.getElementById("st").value,b=document.getElementById("sb").value,n=(t+" "+b).trim().split(/\s+/).filter(Boolean).length;
+ document.getElementById("sp").innerHTML='<b style="font-size:'+(+s*.6+8)+'px">'+t.replace(/</g,"&lt;")+'</b><span style="font-size:'+(s*.5)+'px">'+b.replace(/</g,"&lt;").replace(/\n/g,"<br>")+'</span>';
+ document.getElementById("sf").textContent=s<24?"La letra es pequeña: sube a 24 o más.":(n>40?"Hay mucho texto ("+n+" palabras): deja una sola idea.":"Buen equilibrio ("+n+" palabras).")}
+["st","sz","sb"].forEach(function(i){document.getElementById(i).addEventListener("input",sl)});sl();
+/* Lab IV */
+var shown=[40,65,50];
+function ch(){var cur=[1,2,3].map(function(i){return +document.getElementById("d"+i).value||0}),mx=Math.max.apply(null,shown.concat(cur,[1]));
+ document.getElementById("cg").innerHTML=shown.map(function(v,i){return'<i style="height:'+(v/mx*100)+'%" title="'+["Ene","Feb","Mar"][i]+': '+v+'"></i>'}).join("");
+ document.getElementById("cs").textContent=cur.join()===shown.join()?" Al día":" Desactualizado";return cur}
+[1,2,3].forEach(function(i){document.getElementById("d"+i).addEventListener("input",ch)});
+document.getElementById("up").onclick=function(){shown=ch();ch()};ch();
+</script>
+</body>
+</html>
